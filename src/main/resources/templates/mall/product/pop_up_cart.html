@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+
+    <link rel="stylesheet" th:href="@{/assets/css/all.min.css}">
+    <link rel="stylesheet" th:href="@{/assets/css/bootstrap.min.css}">
+    <link rel="stylesheet" th:href="@{/assets/css/nice-select.css}">
+    <link rel="stylesheet" th:href="@{/assets/css/slick.css}">
+    <link rel="stylesheet" th:href="@{/assets/css/venobox.min.css}">
+    <link rel="stylesheet" th:href="@{/assets/css/ranger_slider.css}">
+    <link rel="stylesheet" th:href="@{/assets/css/animate.css}">
+    <link rel="stylesheet" th:href="@{/assets/css/scroll_button.css}">
+    <link rel="stylesheet" th:href="@{/assets/css/custom_spacing.css}">
+    <link rel="stylesheet" th:href="@{/assets/css/select2.min.css}">
+    <link rel="stylesheet" th:href="@{/assets/css/colorfulTab.min.css}">
+    <link rel="stylesheet" th:href="@{/assets/css/jquery.animatedheadline.css}">
+    <link rel="stylesheet" th:href="@{/assets/css/animated_barfiller.css}">
+    <link rel="stylesheet" th:href="@{/assets/css/style.css}">
+    <link rel="stylesheet" th:href="@{/assets/css/responsive.css}">
+    <meta charset="UTF-8">
+    <title>Hello Page</title>
+</head>
+<body>
+
+
+<div>
+    <ul>
+
+        <li th:each="item : ${orderItems}">
+            <div class="cart_img">
+                <img th:src="${item.product.image}" alt="product" class="img-fluid w-100">
+
+            </div>
+            <div class="cart_text">
+                <h2>Product Name</h2>
+                <a class="cart_title" th:text="${item.product.title}"></a>
+                <p th:text="${'$' + item.product.shopPrice}"></p>
+                <p th:text="${'Customization : ' + item.customization.name}"></p>
+
+                <p th:text="${'SubTotal : $ ' + item.subTotal}"></p>
+                    <span th:text="${'Count : ' + item.count}"></span>
+
+
+
+            </div>
+
+        </li>
+
+    </ul>
+
+    <div>
+        <a class="common_btn" th:href="${'/mall/product/toCartView.html'}">View Cart<span></span></a>
+    </div>
+</div>
+
+</body>
+</html>

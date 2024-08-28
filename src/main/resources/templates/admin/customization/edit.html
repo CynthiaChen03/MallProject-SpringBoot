@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<form th:action="@{'/admin/customization/edit.do'}" method="post">
+    <td><input name="id"  type="text" th:value="${customization.id}" readonly/></td>
+    <td><input name="pid"  type="text" th:value="${customization.productId}" readonly/></td>
+    <td><input name="name"  type="text" th:value="${customization.name}"/></td>
+    <td>
+        <button type="submit" class="submit">Submit<i></i>
+        </button>
+    </td>
+</form>
+
+</body>
+</html>

@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no, target-densityDpi=device-dpi"/>
+    <title>Order View</title>
+    <link rel="icon" type="image/png" th:href="@{/assets/images/favicon.png}">
+
+    <link rel="stylesheet" th:href="@{/assets/css/all.min.css}">
+    <link rel="stylesheet" th:href="@{/assets/css/bootstrap.min.css}">
+    <link rel="stylesheet" th:href="@{/assets/css/nice-select.css}">
+    <link rel="stylesheet" th:href="@{/assets/css/slick.css}">
+    <link rel="stylesheet" th:href="@{/assets/css/venobox.min.css}">
+    <link rel="stylesheet" th:href="@{/assets/css/ranger_slider.css}">
+    <link rel="stylesheet" th:href="@{/assets/css/animate.css}">
+    <link rel="stylesheet" th:href="@{/assets/css/scroll_button.css}">
+    <link rel="stylesheet" th:href="@{/assets/css/custom_spacing.css}">
+    <link rel="stylesheet" th:href="@{/assets/css/select2.min.css}">
+    <link rel="stylesheet" th:href="@{/assets/css/colorfulTab.min.css}">
+    <link rel="stylesheet" th:href="@{/assets/css/jquery.animatedheadline.css}">
+    <link rel="stylesheet" th:href="@{/assets/css/animated_barfiller.css}">
+    <link rel="stylesheet" th:href="@{/assets/css/style.css}">
+    <link rel="stylesheet" th:href="@{/assets/css/responsive.css}">
+    <script type="text/javascript" src="/home/js/msg.js"></script>
+</head>
+
+<body>
+
+<!--==========================
+    HEADER START
+===========================-->
+<header>
+    <div class="container container_large">
+        <div class="row">
+            <div class="col-xl-6 col-md-6 d-none d-md-block">
+                <div class="header_left">
+                    <p><i class="far fa-truck"></i> Free Express shipping over $200!</p>
+                </div>
+            </div>
+            <div class="col-xl-6 col-md-6">
+                <div class="header_right">
+                    <ul>
+                        <li>
+                            <a href="#">
+                                    <span><img th:src="@{/assets/images/user_icon.png}" alt="user"
+                                               class="img-fluid w-100"></span>
+                                My Account
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+<!--==========================
+    HEADER END
+===========================-->
+
+
+<!--==========================
+    MENU START
+===========================-->
+<nav class="navbar navbar-expand-lg main_menu">
+    <div class="container container_large">
+        <a class="navbar-brand" th:href="@{/homepage.html}">
+            <img th:src="@{/assets/images/logo.png}" alt="RESTINA" class="img-fluid w-100">
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                aria-label="Toggle navigation">
+            <i class="fas fa-bars bar_icon"></i>
+            <i class="far fa-times close_icon"></i>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto">
+                <li class="nav-item">
+                    <a class="nav-link" th:href="@{/homepage.html}">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" th:href="@{/menu.html}">Menu</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link active" th:href="@{/order/list.html}">Order</a>
+                </li>
+
+            </ul>
+            <ul class="menu_right">
+
+                <li>
+                    <a class="menu_cart" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight"
+                       aria-controls="offcanvasRight"><i class="far fa-shopping-basket"></i>
+                    </a>
+                </li>
+                <li>
+                    <a class="menu_order common_btn" th:href="@{/menu.html}">
+                            <span class="icon">
+                                <img th:src="@{/assets/images/cart_icon_1.png}" alt="order" class="img-fluid w-100">
+                            </span>
+                        order now
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+
+<!--==========================
+    MENU END
+===========================-->
+
+
+<!--==========================
+    SIGN IN START
+===========================-->
+<section class="sign_in">
+    <div class="row justify-content-center">
+        <div class="col-xl-6 col-lg-6 wow fadeInLeft">
+            <div class="sign_in_img">
+                <img src="/mall/assets/images/sign_in_img.jpg" alt="sign in" class="img-fluid w-100">
+            </div>
+        </div>
+        <div class="col-xl-6 col-md-10 col-lg-6 wow fadeInRight">
+            <div class="sign_in_form">
+                <a class="sign_in_logo" href="index.html">
+                    <img src="/mall/assets/images/logo.png" alt="sign in" class="img-fluid w-100">
+                </a>
+                <h2>Reset (Forget) Password</h2>
+                <p class="description">Please Enter your Email Address to Change your Password</p>
+                <form enctype="multipart/form-data" method="post" th:action="@{/user/forget.do}">
+                    <div class="row">
+                        <div class="col-xl-12">
+                            <input type="text" placeholder="Email" name="email" onblur="checkEmailAddr()">
+                        </div>
+                        <div class="col-xl-12">
+
+                            <input type="password" placeholder="Password" name="password"
+                                   onblur="checkPasswordFormat()">
+                        </div>
+                        <div class="col-xl-12">
+                            <div class="col-md-6">
+                                <img id="num" th:src="@{/user/generateImageCode}"/>
+                            </div>
+                            <div class="col-md-6">
+                                <a href="javascript:;" onclick="changeImageCode()">change picture</a>
+                                <script>
+                                    function changeImageCode() {
+                                        document.getElementById('num').src = '[[@{/user/generateImageCode}]]?' + (new Date()).getTime()
+                                    }
+                                </script>
+                            </div>
+
+                        </div>
+                        <div class="col-xl-12">
+                            <input name="graphicCode" type="text"
+                                   placeholder="Please type in the character in the picture"/>
+                        </div>
+                        <div class="col-md-6">
+                            <input name="mailCode" type="text" placeholder="Verification code"/>
+                        </div>
+                        <div class="col-md-6">
+                            <button class="common_btn" type="button" onclick="sendEmailCode()">Send code</button>
+                        </div>
+                        <div class="col-12">
+                            <button class="common_btn" type="submit">Save</button>
+                        </div>
+                    </div>
+                </form>
+                <p class="or">or</p>
+                <p class="dont_account">Have an account? <a th:href="@{/user/toLogin.html}">Sign In</a></p>
+            </div>
+        </div>
+    </div>
+</section>
+<script th:inline="javascript">
+    function checkEmailAddr() {
+        var email = $("input[name='email']").val();
+        $.get("checkEmail.do?email=" + email, function (data) {
+            if (data === true) {
+                alert("The E-mail has not been registered");
+            }
+        });
+    }
+
+    function checkPasswordFormat() {
+        var password = $("input[name='password']").val();
+        var uppercaseRex = /[A-Z]/;
+        var lowercaseRex = /[a-z]/
+        if (password.length < 6) {
+            alert("The Password Format is not correct. Make sure it's at least 6 characters including both lowercase and uppercaseletters.");
+            $("input[name='password']").val("");
+        } else if (!uppercaseRex.test(password) || !lowercaseRex.test(password)) {
+            alert("The Password Format is not correct. Make sure it's at least 6 characters including both lowercase and uppercaseletters.");
+            $("input[name='password']").val("");
+        }
+    }
+
+    function sendEmailCode() {
+        var email = $("input[name='email']").val();
+        $.ajax({
+            url: "/mall/user/send_email_forget",
+            type: "post",
+            data: {"email": email},
+            success: function () {
+                alert("Veryfication Code Has Been Sent to Your E-mail.");
+            },
+            error: function () {
+                alert("Failed to Send Verification Code to Your E-mail. Please Check Your E-mail Adress!");
+            }
+        });
+    }
+
+
+    // ]]>
+</script>
+<!--==========================
+    SIGN IN END
+===========================-->
+
+
+<!--==========================
+    SCROLL BUTTON START
+===========================-->
+<div class="progress-wrap">
+    <svg class="progress-circle svg-content" width="100%" height="100%" viewBox="-1 -1 102 102">
+        <path d="M50,1 a49,49 0 0,1 0,98 a49,49 0 0,1 0,-98"/>
+    </svg>
+</div>
+<!--==========================
+    SCROLL BUTTON END
+===========================-->
+
+
+<!--jquery library js-->
+<script th:src="@{/assets/js/jquery-3.7.1.min.js}"></script>
+<!--bootstrap js-->
+<script th:src="@{/assets/js/bootstrap.bundle.min.js}"></script>
+<!--font-awesome js-->
+<script th:src="@{/assets/js/Font-Awesome.js}"></script>
+<!--nice select js-->
+<script th:src="@{/assets/js/jquery.nice-select.min.js}"></script>
+<!--marquee js-->
+<script th:src="@{/assets/js/jquery.marquee.min.js}"></script>
+<!--slick js-->
+<script th:src="@{/assets/js/slick.min.js}"></script>
+<!--countup js-->
+<script th:src="@{/assets/js/jquery.waypoints.min.js}"></script>
+<script th:src="@{/assets/js/jquery.countup.min.js}"></script>
+<!--venobox js-->
+<script th:src="@{/assets/js/venobox.min.js}"></script>
+<!--scroll button js-->
+<script th:src="@{/assets/js/scroll_button.js}"></script>
+<!--price ranger js-->
+<script th:src="@{/assets/js/ranger_jquery-ui.min.js}"></script>
+<script th:src="@{/assets/js/ranger_slider.js}"></script>
+<!--select 2 js-->
+<script th:src="@{/assets/js/select2.min.js}"></script>
+<!--aos js-->
+<script th:src="@{/assets/js/wow.min.js}"></script>
+<!--colorfulTab js-->
+<script th:src="@{/assets/js/colorfulTab.min.js}"></script>
+<!--sticky sidebar js-->
+<script th:src="@{/assets/js/sticky_sidebar.js}"></script>
+<!--animated barfiller js-->
+<script th:src="@{/assets/js/animated_barfiller.js}"></script>
+<!--animatedheadline js-->
+<script th:src="@{/assets/js/jquery.animatedheadline.min.js}"></script>
+<!--script/custom js-->
+<script th:src="@{/assets/js/script.js}"></script>
+
+</body>
+
+</html>

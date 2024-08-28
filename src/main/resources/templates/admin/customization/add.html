@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Hello Page</title>
+</head>
+<body>
+<form th:action="@{'/admin/customization/add.do'}" method="post">
+    <td><input name="pid"  type="text" th:value="${product.id}" readonly/></td>
+    <td><input name="name"  type="text"/></td>
+    <td>
+        <button type="submit" class="submit">Submit<i></i>
+        </button>
+    </td>
+</form>
+
+</body>
+</html>

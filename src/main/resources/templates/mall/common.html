@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <link rel="stylesheet" th:href="@{/mycss/style.css}"/>
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <meta charset="UTF-8"/>
+    <title>Title</title>
+</head>
+<body>
+<!--
+    这里包含了每个页面的公共模块
+-->
+
+<div class="hero" th:fragment="head">
+<nav>
+
+    <ul>
+        <li><a href="/mall/index.html">Home</a></li>
+        <li><a style="cursor: pointer" onclick= "toggleMenu1()" >Classification</a>
+            <div class="sub-menu-wrap" id="subMenu1">
+                <div class="sub-menu" id="f">
+
+                </div>
+            </div>
+        </li>
+        <li><a href="#">About</a></li>
+        <li><a href="#">Contact</a></li>
+    </ul>
+    <span th:if="${session.user == null}">
+    <img th:src="@{/image/logn.png}" class="user-pic" onclick="toggleMenu()">
+    </span>
+    <span th:if="${session.user != null}">
+    <img th:src="@{/image/logn.pn}" class="user-pic" onclick="toggleMenu()">
+    </span>
+    <div class="sub-menu-wrap" id="subMenu">
+
+        <div class="sub-menu">
+            <div class="user-info">
+                <span th:if="${session.user == null}"></span>
+                <span th:if="${session.user != null}" th:text="'欢迎您!&nbsp;' + ${session.user.username}">请登陆</span>
+            </div>
+            <hr>
+
+            <a href="#" class="sub-menu-link">
+                <dd th:if="${session.user != null}"><a href="/mall/user/logout.do"><i class="fa fa-sign-out"></i> 退出登录</a></dd>
+                <dd th:if="${session.user != null}"><a href="/mall/order/toList.html"><i class="fa fa-list"></i> 我的订单</a></dd>
+                <dd th:if="${session.user != null}"><a href="/mall/product/toCart.html"><i class="fa fa-shopping-cart"></i> 购物车</a></dd>
+                <dd th:if="${session.user == null}"><a href="/mall/user/toLogin.html"><i class="fa fa-sign-in"></i> 登录</a></dd>
+                <dd th:if="${session.user == null}"><a href="/mall/user/toRegister.html"><i class="fa fa-user-plus"></i> 注册</a></dd>
+            </a>
+
+
+
+        </div>
+    </div>
+</nav>
+    <script>
+        let subMenu = document.getElementById("subMenu");
+
+        function toggleMenu(){
+            subMenu.classList.toggle("open-menu");
+
+        }
+        let subMenu1 = document.getElementById("subMenu1");
+
+        function toggleMenu1() {
+            subMenu1.classList.toggle("open-menu");
+        }
+        //                    <![CDATA[
+        //加载分类
+        $.getJSON("/mall/product/getCla", function (data) {
+            $.each(data, function(index, item) {
+                console.log(item.cla); // 输出 item 对象中的 cla 属性
+                console.log(item.id);  // 输出 item 对象中的 id 属性
+
+                var list = $("#f");
+                var cat = $("<dd><a style='color: #0A0E11' href='/mall/product/category.html?cla=" + item.cla + "'>" + item.cla + "</a></dd>");
+                list.append(cat);
+            });
+        });
+
+
+        //
+    </script>
+</div>
+
+<!--底部模块-->
+<div class="footer footer-index" th:fragment="foot">
+    <hr style="color: #c2c2c2;" />
+    <!-- 底部固定区域 -->
+    ©  2023
+    <a href="/mall/admin/toLogin.html">后台管理系统</a>
+</div>
+
+</body>
+</html>

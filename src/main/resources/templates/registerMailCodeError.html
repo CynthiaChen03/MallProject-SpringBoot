@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no, target-densityDpi=device-dpi"/>
+    <title>Menu</title>
+    <link rel="stylesheet" th:href="@{/mycss/style.css}"/>
+
+    <link rel="icon" type="image/png" th:href="@{/assets/images/favicon.png}">
+    <link rel="stylesheet" th:href="@{/assets/css/all.min.css}">
+    <link rel="stylesheet" th:href="@{/assets/css/bootstrap.min.css}">
+    <link rel="stylesheet" th:href="@{/assets/css/nice-select.css}">
+    <link rel="stylesheet" th:href="@{/assets/css/slick.css}">
+    <link rel="stylesheet" th:href="@{/assets/css/venobox.min.css}">
+    <link rel="stylesheet" th:href="@{/assets/css/ranger_slider.css}">
+    <link rel="stylesheet" th:href="@{/assets/css/animate.css}">
+    <link rel="stylesheet" th:href="@{/assets/css/scroll_button.css}">
+    <link rel="stylesheet" th:href="@{/assets/css/custom_spacing.css}">
+    <link rel="stylesheet" th:href="@{/assets/css/select2.min.css}">
+    <link rel="stylesheet" th:href="@{/assets/css/colorfulTab.min.css}">
+    <link rel="stylesheet" th:href="@{/assets/css/jquery.animatedheadline.css}">
+    <link rel="stylesheet" th:href="@{/assets/css/animated_barfiller.css}">
+    <link rel="stylesheet" th:href="@{/assets/css/style.css}">
+    <link rel="stylesheet" th:href="@{/assets/css/responsive.css}">
+</head>
+
+<body>
+
+<!--==========================
+    HEADER START
+===========================-->
+<header>
+    <div class="container container_large">
+        <div class="row">
+            <div class="col-xl-6 col-md-6 d-none d-md-block">
+                <div class="header_left">
+                    <p><i class="far fa-truck"></i> Free Express shipping over $200!</p>
+                </div>
+            </div>
+            <div class="col-xl-6 col-md-6">
+                <div class="header_right">
+                    <ul>
+                        <li>
+                            <a href="#" onclick="toggleMenu()">
+                                    <span><img th:src="@{/assets/images/user_icon.png}" alt="user"
+                                               class="img-fluid w-100"></span>
+                                My Account
+                            </a>
+                            <div class="sub-menu-wrap" id="subMenu">
+                                <div class="sub-menu">
+                                    <div class="user-info">
+                                        <span th:if="${session.user == null}"></span>
+                                        <span th:if="${session.user != null}" th:text="'Welcome!&nbsp;' + ${session.user.username}">请登陆</span>
+                                    </div>
+                                    <hr>
+
+                                    <a href="#" class="sub-menu-link">
+                                        <dd th:if="${session.user != null}"><a href="/mall/user/logout.do" style="color: #0c0c0c"><i class="fa fa-sign-out" style="color: #0c0c0c"></i > Log out</a></dd>
+                                        <dd th:if="${session.user != null}"><a href="/mall/user/toForget.html" style="color: #0c0c0c"><i class="fa fa-sign-out" style="color: #0c0c0c"></i> Reset password</a></dd>
+                                        <dd th:if="${session.user == null}"><a href="/mall/user/toLogin.html" style="color: #0c0c0c"><i class="fa fa-sign-in" style="color: #0c0c0c"></i> Log in</a></dd>
+                                        <dd th:if="${session.user == null}"><a href="/mall/user/toRegister.html" style="color: #0c0c0c" ><i class="fa fa-user-plus" style="color: #0c0c0c"></i> Sign up</a></dd>
+                                        <dd ><a href="/mall/admin/toLogin.html" style="color: #0c0c0c"><i class="fa fa-sign-in" style="color: #0c0c0c"></i>Adimin Log in</a></dd>
+                                    </a>
+                                </div>
+                            </div>
+                            <script>
+                                let subMenu = document.getElementById("subMenu");
+                                function toggleMenu(){
+                                    subMenu.classList.toggle("open-menu");
+
+                                }
+                            </script>
+                        </li>
+
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+<!--==========================
+    HEADER END
+===========================-->
+
+
+<!--==========================
+    MENU START
+===========================-->
+<nav class="navbar navbar-expand-lg main_menu">
+    <div class="container container_large">
+        <a class="navbar-brand" th:href="@{/homepage.html}">
+            <img th:src="@{/assets/images/logo.png}" alt="RESTINA" class="img-fluid w-100">
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                aria-label="Toggle navigation">
+            <i class="fas fa-bars bar_icon"></i>
+            <i class="far fa-times close_icon"></i>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto">
+
+                <li class="nav-item">
+                    <a class="nav-link" th:href="@{/homepage.html}">Homepage</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link active" th:href="@{/menu.html}">Menu</a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" th:href="@{/order/toList.html}">Order</a>
+                </li>
+
+            </ul>
+            <ul class="menu_right">
+                <li>
+                    <a class="menu_cart" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight"
+                       aria-controls="offcanvasRight" id="openModalBtn"><i class="far fa-shopping-basket"></i>
+                        <button></button>
+                    </a>
+
+
+                </li>
+                <li>
+                    <a class="menu_order common_btn" href="#">
+                            <span class="icon">
+                                <img th:src="@{assets/images/cart_icon_1.png}" alt="order" class="img-fluid w-100">
+                            </span>
+                        order now
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+<div id="myModal" class="mini_cart">
+    <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel">
+        <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="offcanvasRightLabel"> my cart </h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"><i
+                    class="far fa-times"></i></button>
+        </div>
+        <div id="modalContent">
+
+        </div>
+    </div>
+</div>
+<!--==========================
+    MENU END
+===========================-->
+
+
+
+<!--==========================
+        ERROR START
+    ===========================-->
+<section class="error_page pt_120 xs_pt_100 mt_120 xs_mt_100">
+    <div class="container">
+        <div class="row wow fadeInUp">
+            <div class="col-xxl-5 col-md-9 col-lg-7 col-xl-6 m-auto">
+                <div class="error_text">
+                </div>
+                <h1><i class="fa fa-times-circle text-danger"></i> Error!</h1>
+                <br/>
+                <h3>Your mail verification code is worng. Please try again</h3>
+                <br/>
+                <br/>
+                <a class="common_btn" th:href="@{/homepage.html}">go back home</a>
+            </div>
+            <div class="error_text" id="content">
+                <div  style="margin-top: 30px;text-align: center;">
+                    <p style="font-size: 25px;font-weight: 300;color: #FF5722;" th:text="${msg}"></p>
+                    <br/>
+                    <P><span  id="sec">6</span>&emsp;seconds to return previous page...</P>
+                </div>
+                <script>
+                    //        <![CDATA[
+                    var index ;
+                    index = window.setInterval(function () {
+                        var sec = $("#sec").text();
+                        if(sec==0){
+                            window.clearInterval(index);
+                            window.location.href = "/mall/user/toRegister.html";
+                        }else{
+                            $("#sec").text(--sec);
+                        }
+                    },1000);
+                    //        ]]>
+                </script>
+            </div>
+        </div>
+    </div>
+    </div>
+</section>
+<!--==========================
+    ERROR END
+===========================-->
+
+
+<!--==========================
+    SCROLL BUTTON START
+===========================-->
+<div class="progress-wrap">
+    <svg class="progress-circle svg-content" width="100%" height="100%" viewBox="-1 -1 102 102">
+        <path d="M50,1 a49,49 0 0,1 0,98 a49,49 0 0,1 0,-98"/>
+    </svg>
+</div>
+<!--==========================
+    SCROLL BUTTON END
+===========================-->
+
+<script th:src="@{/js/pop_up_cart.js}"></script>
+<!--jquery library js-->
+<script th:src="@{/assets/js/jquery-3.7.1.min.js}"></script>
+<!--bootstrap js-->
+<script th:src="@{/assets/js/bootstrap.bundle.min.js}"></script>
+<!--font-awesome js-->
+<script th:src="@{/assets/js/Font-Awesome.js}"></script>
+<!--nice select js-->
+<script th:src="@{/assets/js/jquery.nice-select.min.js}"></script>
+<!--marquee js-->
+<script th:src="@{/assets/js/jquery.marquee.min.js}"></script>
+<!--slick js-->
+<script th:src="@{/assets/js/slick.min.js}"></script>
+<!--countup js-->
+<script th:src="@{/assets/js/jquery.countup.min.js}"></script>
+<script th:src="@{/assets/js/jquery.waypoints.min.js}"></script>
+
+<!--venobox js-->
+<script th:src="@{/assets/js/venobox.min.js}"></script>
+<!--scroll button js-->
+<script th:src="@{/assets/js/scroll_button.js}"></script>
+<!--price ranger js-->
+<script th:src="@{/assets/js/ranger_jquery-ui.min.js}"></script>
+<script th:src="@{/assets/js/ranger_slider.js}"></script>
+<!--select 2 js-->
+<script th:src="@{/assets/js/select2.min.js}"></script>
+<!--aos js-->
+
+<script th:src="@{/assets/js/wow.min.js}"></script>
+<!--colorfulTab js-->
+<script th:src="@{/assets/js/colorfulTab.min.js}"></script>
+<!--sticky sidebar js-->
+<script th:src="@{/assets/js/sticky_sidebar.js}"></script>
+<!--animated barfiller js-->
+<script th:src="@{/assets/js/animated_barfiller.js}"></script>
+<!--animatedheadline js-->
+<script th:src="@{/assets/js/jquery.animatedheadline.min.js}"></script>
+<!--script/custom js-->
+<script th:src="@{/assets/js/script.js}"></script>
+
+</body>
+
+</html>

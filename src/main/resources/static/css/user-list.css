@@ -1,0 +1,41 @@
+.content{
+    border: 1px solid #01AAED;
+    width: 1000px;
+    height: 900px;
+
+    position: static;
+    left: 260px;
+    top: 100px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+table {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+th, td {
+    border: 1px solid black;
+    width: 150px;
+    height: 80px;
+    padding: 8px;
+    text-align: center;
+}
+.tp-pagination{
+    position: absolute;
+    bottom: 10px;
+    width: 1000px;
+    height: 100px;
+    padding: 5px;
+    border: 1px solid #000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.tp-pagination ul li{
+    display: inline-block;
+    margin-right: 10px;
+}
